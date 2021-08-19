@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+management:
+  metrics:
+    export:
+      newrelic:
+        enabled: true
+        api-key: NRII-8CWVcs29z96uPDEAtp73vAmdQIizUgST
+        account-id: 3145659
+        step: 5s
+
+logging:
+  config: classpath:logback-spring.xml
+
+pm:
+  userservice:
+    url: http://pm-users:8080
+
+spring:
+  application:
+    name: pm-destinations

@@ -24,10 +24,17 @@ public class DestinationRestController {
         this.destinationDTOMapper = destinationDTOMapper;
     }
 
+    @GetMapping
+    public Mono<String> index() {
+        return Mono.just("Destination Index")
+                .metrics();
+    }
+
     @GetMapping("/user/{userId}")
     public Flux<DestinationDTO> findAllByUserId(@PathVariable("userId") String userId) {
         return this.destinationService.findAllByUserID(new UserID(userId))
                 .flatMap(destination -> Mono.just(destinationDTOMapper.map(destination)))
-                .onErrorResume(Flux::error);
+                .onErrorResume(Flux::error)
+                .metrics();
     }
 }
